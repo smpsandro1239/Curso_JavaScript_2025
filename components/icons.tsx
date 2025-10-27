@@ -149,3 +149,84 @@ export const ArrowFunctionIcon: React.FC = () => (
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 12v6.75m0 0l-3-3m3 3l3-3" />
     </svg>
 );
+
+export const ArrayIcon: React.FC = () => (
+    <svg {...iconProps}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 6.75h7.5m-7.5 3h7.5m-7.5 3h7.5m3-9a1.5 1.5 0 0 0-1.5-1.5h-10.5a1.5 1.5 0 0 0-1.5 1.5v10.5a1.5 1.5 0 0 0 1.5 1.5h10.5a1.5 1.5 0 0 0 1.5-1.5V6.75Z" />
+    </svg>
+);
+
+export const ObjectIcon: React.FC = () => (
+    <svg {...iconProps}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 6.75h.375m-.375 3h.375m-.375 3h.375M9 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm.002-3a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm.002-3a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5h7.5a2.25 2.25 0 0 1 2.25 2.25v9a2.25 2.25 0 0 1-2.25 2.25h-7.5a2.25 2.25 0 0 1-2.25-2.25v-9a2.25 2.25 0 0 1 2.25-2.25Z" />
+    </svg>
+);
+
+export const IterationIcon: React.FC = () => (
+    <svg {...iconProps}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 5.25 14.25 3.75" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="m14.25 20.25 1.5-1.5" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 14.25 5.25 15.75" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9.75 5.25 8.25" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="m18.75 9.75-1.5-1.5" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 18.75 1.5-1.5" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 5.25 1.5-1.5" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 3.75 9.75 5.25" />
+    </svg>
+);
+
+export const ReduceIcon: React.FC = () => (
+    <svg {...iconProps}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9.75v10.5m-3-10.5v10.5m6-10.5v10.5m0-10.5a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm-9-4.5h9" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15 20.25a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+    </svg>
+);
+
+export const DestructuringIcon: React.FC = () => (
+    <svg {...iconProps}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 12.793V5.25a2.25 2.25 0 0 0-2.25-2.25h-13.5A2.25 2.25 0 0 0 3 5.25v13.5a2.25 2.25 0 0 0 2.25 2.25h9.43" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="m16.5 20.25-1.5-1.5m0 0 1.5-1.5m-1.5 1.5h4.5m-4.5 0v4.5m-12-16.5h9" />
+    </svg>
+);
+
+export const FactoryIcon: React.FC = () => (
+    <svg {...iconProps}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 21h16.5M3.75 12h16.5m-16.5-6h16.5M3.75 6V4.5A2.25 2.25 0 0 1 6 2.25h12A2.25 2.25 0 0 1 20.25 4.5V6" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="m21 12-3.82-3.82a3 3 0 0 0-4.24 0L12 9" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="m3 12 3.82-3.82a3 3 0 0 1 4.24 0L12 9" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21V9" />
+    </svg>
+);
+
+export const PrototypeIcon: React.FC = () => (
+    <svg {...iconProps}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6.375c-1.328-1.1-2.5-1.875-2.5-1.875s-1.172.775-2.5 1.875m5 0c1.328-1.1 2.5-1.875 2.5-1.875s1.172.775 2.5 1.875" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8 8.25v1.5a1.5 1.5 0 0 0 1.5 1.5h5a1.5 1.5 0 0 0 1.5-1.5v-1.5" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 11.25v6.75" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 18H12m0 0h2.25" />
+    </svg>
+);
+
+export const ClassIcon: React.FC = () => (
+    <svg {...iconProps}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75v4.5m0-4.5h-4.5m4.5 0L15 9m5.25 11.25v-4.5m0 4.5h-4.5m4.5 0L15 15M9 9l6 6m-6 0 6-6" />
+    </svg>
+);
+
+export const InheritanceIcon: React.FC = () => (
+    <svg {...iconProps}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.75V8.25m0 0v-1.5m0 1.5h-1.5m1.5 0h1.5" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8.25v3.75m0 0v-3.75m0 3.75h-3.75m3.75 0h3.75" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18v-3.75m0 0v3.75m0-3.75h1.5m-1.5 0H4.5m1.5 0v-1.5a3.75 3.75 0 0 1 3.75-3.75h1.5" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M18 18v-3.75m0 0v3.75m0-3.75h-1.5m1.5 0h1.5m-1.5 0v-1.5a3.75 3.75 0 0 0-3.75-3.75h-1.5" />
+    </svg>
+);
+
+export const EncapsulationIcon: React.FC = () => (
+    <svg {...iconProps}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 12c0 1.268-.63 2.4-1.683 3.055-.697.44-1.468.79-2.317 1.055-1.13.35-2.332.54-3.5.54-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9Z" />
+    </svg>
+);

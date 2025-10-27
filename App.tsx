@@ -5,7 +5,9 @@ import {
   ToolIcon, PuzzleIcon, BrowserIcon, GitBranchIcon, FileIcon, 
   JsIcon, SyntaxIcon, VariableIcon, TypeIcon, OperatorIcon, ExerciseIcon,
   DecisionIcon, LoopIcon, AdvancedLoopIcon, QuizIcon, SummaryIcon, SwitchIcon,
-  FunctionIcon, TemplateLiteralIcon, ScopeIcon, ClosureIcon, ArrowFunctionIcon
+  FunctionIcon, TemplateLiteralIcon, ScopeIcon, ClosureIcon, ArrowFunctionIcon,
+  ArrayIcon, ObjectIcon, IterationIcon, ReduceIcon, DestructuringIcon,
+  FactoryIcon, PrototypeIcon, ClassIcon, InheritanceIcon, EncapsulationIcon
 } from './components/icons';
 
 const gitignoreContent = `# Ficheiros de dependências
@@ -352,6 +354,8 @@ const Module1 = () => {
         { id: 6, title: 'Aula 6: A Apresentação', component: <Lesson1_6 /> },
     ];
 
+    const lesson = lessons.find(l => l.id === activeLesson);
+
     return (
         <div className="animate-fade-in">
             <div className="flex justify-center flex-wrap gap-2 mb-10 border-b border-slate-700 pb-4">
@@ -370,7 +374,7 @@ const Module1 = () => {
                      </button>
                 ))}
             </div>
-            {lessons.find(l => l.id === activeLesson)?.component}
+            {lesson?.component}
         </div>
     );
 };
@@ -663,6 +667,8 @@ const Module2 = () => {
         { id: 6, title: 'Aula 6: Resumo e Projeto', component: <Lesson2_6 /> },
     ];
 
+    const lesson = lessons.find(l => l.id === activeLesson);
+
     return (
         <div className="animate-fade-in">
             <div className="flex justify-center flex-wrap gap-2 mb-10 border-b border-slate-700 pb-4">
@@ -681,7 +687,7 @@ const Module2 = () => {
                      </button>
                 ))}
             </div>
-            {lessons.find(l => l.id === activeLesson)?.component}
+            {lesson?.component}
         </div>
     );
 };
@@ -761,7 +767,6 @@ console.log("Saldo depois:", saldoDaConta); // 150`}</code>
             </pre>
         </TopicCard>
         <TopicCard title="Quiz Rápido" icon={<QuizIcon />}>
-            {/* FIX: The code snippet was causing a JSX parsing error because the curly braces were being interpreted as a code block to execute. Wrapped the code in a string literal within a <code> tag to display it as text and apply proper styling. Also replaced backticks with <code> tags for consistency. */}
             <p><strong>Pergunta:</strong> Considera a função <code>{'function alertar(msg) { alert(msg); }'}</code>. Qual é o valor de <code>{'const resultado = alertar("Olá");'}</code>?</p>
             <p className="text-sm text-slate-400"><strong>Resposta:</strong> <code>undefined</code>. A função <code>alertar</code> executa uma ação (mostra um alerta), mas não tem uma instrução <code>return</code>. Por isso, ela devolve o valor por defeito, que é <code>undefined</code>.</p>
         </TopicCard>
@@ -883,7 +888,21 @@ const Lesson3_5 = () => (
             <p>Vamos construir a interface do nosso multibanco, usando as funções da conta que criámos na aula anterior e uma arrow function para o menu.</p>
             <pre className="bg-slate-950 rounded-md p-4 text-sm ring-1 ring-slate-700">
                 <code className="font-mono text-emerald-300 whitespace-pre-wrap">{`// Funções da conta (da aula anterior)
-function criarConta(saldoInicial) { /* ... */ }
+function criarConta(saldoInicial) {
+  let saldo = saldoInicial;
+
+  return {
+    verSaldo: () => saldo,
+    depositar: (valor) => saldo += valor,
+    levantar: (valor) => {
+      if (valor <= saldo) {
+        saldo -= valor;
+        return saldo;
+      }
+      return "Saldo insuficiente";
+    },
+  };
+}
 
 const minhaConta = criarConta(200);
 let continuar = true;
@@ -940,6 +959,8 @@ const Module3 = () => {
         { id: 5, title: 'Aula 5: A Forma Moderna', component: <Lesson3_5 /> },
     ];
 
+    const lesson = lessons.find(l => l.id === activeLesson);
+
     return (
         <div className="animate-fade-in">
             <div className="flex justify-center flex-wrap gap-2 mb-10 border-b border-slate-700 pb-4">
@@ -958,7 +979,551 @@ const Module3 = () => {
                      </button>
                 ))}
             </div>
-            {lessons.find(l => l.id === activeLesson)?.component}
+            {lesson?.component}
+        </div>
+    );
+};
+
+const Lesson4_1 = () => (
+    <div className="space-y-8">
+        <TopicCard title="Objetivo: As Listas de Compras do Código" icon={<ArrayIcon />}>
+            <p><strong>Meta:</strong> Aprender a criar e manipular a estrutura de dados mais comum: o Array. Vamos aprender a adicionar, remover e aceder a elementos numa lista ordenada.</p>
+        </TopicCard>
+        <TopicCard title="Analogia: A Lista de Compras em Papel" icon={<ArrayIcon />}>
+            <p>Um Array é como uma <strong>lista de compras numerada</strong>. Cada item tem uma posição (o seu <strong>índice</strong>), e esta ordem é importante. E a primeira regra importante: <strong>a contagem começa sempre no zero!</strong></p>
+            <ul>
+                <li><strong><code>const lista = ['pão', 'leite'];</code></strong>: Escrever a lista inicial.</li>
+                <li><strong><code>lista[0]</code></strong>: Ler o primeiro item da lista (pão).</li>
+                <li><strong><code>lista.push('ovos')</code></strong>: Adicionar um item ao <strong>fim</strong> da lista.</li>
+                <li><strong><code>lista.pop()</code></strong>: Riscar o <strong>último</strong> item da lista.</li>
+                <li><strong><code>lista.length</code></strong>: Ver quantos itens tens na lista.</li>
+            </ul>
+        </TopicCard>
+        <TopicCard title="Prática: Iniciar o Carrinho de Compras" icon={<ExerciseIcon />}>
+            <p>Vamos criar o nosso primeiro carrinho de compras e fazer algumas operações básicas.</p>
+            <pre className="bg-slate-950 rounded-md p-4 text-sm ring-1 ring-slate-700">
+                <code className="font-mono text-emerald-300 whitespace-pre-wrap">{`// 1. Criar um carrinho vazio
+const carrinho = [];
+
+// 2. Adicionar alguns itens
+carrinho.push('Maçãs');
+carrinho.push('Pão de Forma');
+carrinho.push('Leite');
+
+console.log('Carrinho atual:', carrinho); // ['Maçãs', 'Pão de Forma', 'Leite']
+
+// 3. Aceder ao segundo item (índice 1)
+console.log('O segundo item é:', carrinho[1]); // Pão de Forma
+
+// 4. O cliente arrependeu-se do último item
+const ultimoItem = carrinho.pop();
+console.log(ultimoItem + ' foi removido.'); // Leite foi removido.
+console.log('Carrinho final:', carrinho); // ['Maçãs', 'Pão de Forma']`}</code>
+            </pre>
+        </TopicCard>
+        <TopicCard title="Quiz Rápido" icon={<QuizIcon />}>
+            <p><strong>Pergunta:</strong> Se tiveres a lista `const cores = ['vermelho', 'verde', 'azul']`, como acedes à cor 'azul'?</p>
+            <p className="text-sm text-slate-400"><strong>Resposta:</strong> `cores[2]`. Lembra-te, a contagem começa em zero, por isso o primeiro item é `cores[0]`, o segundo é `cores[1]`, e o terceiro é `cores[2]`.</p>
+        </TopicCard>
+    </div>
+);
+
+const Lesson4_2 = () => (
+    <div className="space-y-8">
+        <TopicCard title="Objetivo: Os Catálogos de Produtos" icon={<ObjectIcon />}>
+            <p><strong>Meta:</strong> Aprender a usar Objetos para agrupar dados relacionados. Vamos evoluir o nosso carrinho de uma simples lista de nomes para uma estrutura que guarda nome, preço e quantidade.</p>
+        </TopicCard>
+        <TopicCard title="Analogia: A Etiqueta do Produto" icon={<ObjectIcon />}>
+            <p>Se um Array é uma lista, um Objeto é como a <strong>etiqueta de um produto na prateleira</strong>. Não tem uma ordem, mas agrupa várias informações sobre uma única coisa. Cada informação tem um nome (a <strong>chave</strong>) e um valor.</p>
+            <p>Em vez de `['Maçãs', 1.50, 6]`, que é ambíguo, usamos um objeto:</p>
+            <pre className="bg-slate-950 rounded-md p-2 text-sm"><code>{`const produto = {
+  nome: 'Maçãs',
+  preco: 1.50,
+  quantidade: 6
+};`}</code></pre>
+            <p>Para aceder à informação, usamos a "notação de ponto": `produto.nome` ou `produto.preco`.</p>
+        </TopicCard>
+        <TopicCard title="Prática: Melhorar o Carrinho com Objetos" icon={<ExerciseIcon />}>
+            <p>Vamos transformar o nosso array de strings num array de objetos, o que é muito mais útil na vida real.</p>
+            <pre className="bg-slate-950 rounded-md p-4 text-sm ring-1 ring-slate-700">
+                <code className="font-mono text-emerald-300 whitespace-pre-wrap">{`const carrinho = [
+  { nome: 'Maçãs', preco: 1.50, quantidade: 2 },
+  { nome: 'Pão de Forma', preco: 2.00, quantidade: 1 },
+  { nome: 'Leite', preco: 0.80, quantidade: 1 }
+];
+
+// Aceder ao nome do segundo produto
+console.log(carrinho[1].nome); // "Pão de Forma"
+
+// Calcular o custo total do primeiro produto
+const custoMacas = carrinho[0].preco * carrinho[0].quantidade;
+console.log(\`O custo total das maçãs é \${custoMacas.toFixed(2)}€\`); // 3.00€
+
+// Adicionar um novo produto ao carrinho
+carrinho.push({ nome: 'Café', preco: 4.50, quantidade: 1 });
+
+console.log(carrinho);`}</code>
+            </pre>
+        </TopicCard>
+        <TopicCard title="Quiz Rápido" icon={<QuizIcon />}>
+            <p><strong>Pergunta:</strong> Tens um objeto `const utilizador = { nome: 'Ana', idade: 30 }`. Como alteras a idade para 31?</p>
+            <p className="text-sm text-slate-400"><strong>Resposta:</strong> `utilizador.idade = 31;`. Podes ler e reatribuir valores das propriedades de um objeto da mesma forma que farias com uma variável normal, usando a notação de ponto.</p>
+        </TopicCard>
+    </div>
+);
+
+const Lesson4_3 = () => (
+    <div className="space-y-8">
+        <TopicCard title="Objetivo: A Linha de Montagem" icon={<IterationIcon />}>
+            <p><strong>Meta:</strong> Aprender a usar os métodos de iteração `map` e `filter` para transformar e filtrar arrays de forma declarativa, sem precisar de loops `for`.</p>
+        </TopicCard>
+        <TopicCard title="Analogia: A Fábrica de Produtos" icon={<IterationIcon />}>
+            <p>Pensa no teu array como uma caixa de matérias-primas que entra numa fábrica.</p>
+            <ul>
+                <li><strong><code>.map()</code> (A Transformadora):</strong> É uma <strong>linha de montagem</strong> que pega em cada item, aplica-lhe uma transformação (ex: pinta-o, embala-o) e coloca o item transformado numa nova caixa. A nova caixa tem sempre <strong>o mesmo número de itens</strong> que a original.</li>
+                <li><strong><code>.filter()</code> (O Controlo de Qualidade):</strong> É um <strong>inspetor</strong> que examina cada item. Apenas os que passam no teste (a condição retorna `true`) são colocados na nova caixa. A nova caixa pode ter <strong>menos itens</strong> (ou o mesmo número, se todos passarem).</li>
+            </ul>
+        </TopicCard>
+        <TopicCard title="Prática: Gerir o Carrinho com Eficiência" icon={<ExerciseIcon />}>
+            <p>Vamos usar `map` para extrair uma lista de nomes e `filter` para encontrar produtos caros.</p>
+            <pre className="bg-slate-950 rounded-md p-4 text-sm ring-1 ring-slate-700">
+                <code className="font-mono text-emerald-300 whitespace-pre-wrap">{`const carrinho = [
+  { nome: 'Maçãs', preco: 1.50 },
+  { nome: 'Pão de Forma', preco: 2.00 },
+  { nome: 'Café', preco: 4.50 },
+  { nome: 'Leite', preco: 0.80 }
+];
+
+// Usar .map() para criar uma lista só com os nomes dos produtos
+const nomesDosProdutos = carrinho.map(produto => produto.nome);
+console.log(nomesDosProdutos); // ['Maçãs', 'Pão de Forma', 'Café', 'Leite']
+
+// Usar .filter() para encontrar produtos que custam mais de 1.80€
+const produtosCaros = carrinho.filter(produto => produto.preco > 1.80);
+console.log(produtosCaros); // [{ nome: 'Pão de Forma', ...}, { nome: 'Café', ...}]`}</code>
+            </pre>
+        </TopicCard>
+        <TopicCard title="Quiz Rápido" icon={<QuizIcon />}>
+            <p><strong>Pergunta:</strong> Queres criar um novo array com os preços do carrinho, mas com 10% de desconto já aplicado. Qual método usarias, `map` ou `filter`?</p>
+            <p className="text-sm text-slate-400"><strong>Resposta:</strong> `map`. Porque queres <strong>transformar</strong> cada item do array original (pegar no preço e calcular o desconto) e o novo array terá o mesmo número de elementos. A operação seria `carrinho.map(p => p.preco * 0.9)`.</p>
+        </TopicCard>
+    </div>
+);
+
+const Lesson4_4 = () => (
+    <div className="space-y-8">
+        <TopicCard title="Objetivo: O Contabilista do Código" icon={<ReduceIcon />}>
+            <p><strong>Meta:</strong> Dominar o método `reduce`, o mais poderoso dos métodos de iteração, para "reduzir" um array a um único valor. É a ferramenta perfeita para somas, médias ou qualquer cálculo cumulativo.</p>
+        </TopicCard>
+        <TopicCard title="Analogia: O Chef a Fazer Sopa" icon={<ReduceIcon />}>
+            <p>O método `reduce` é como um chef a fazer uma sopa. Ele tem:</p>
+            <ul>
+                <li><strong>Uma panela vazia (o acumulador):</strong> É o valor que começa (normalmente `0` para somas) e que vai sendo "acumulado".</li>
+                <li><strong>Uma mesa de ingredientes (o array):</strong> Os itens que ele vai processar.</li>
+            </ul>
+            <p>O chef pega no primeiro ingrediente, junta-o ao que está na panela. Depois pega no segundo, e junta ao resultado que já lá estava. Ele repete este processo, um a um, até todos os ingredientes estarem na panela. No final, o que ele devolve não é uma lista de ingredientes, mas sim <strong>uma única panela de sopa</strong> (o valor final).</p>
+        </TopicCard>
+        <TopicCard title="Prática: Calcular o Total do Carrinho" icon={<ExerciseIcon />}>
+            <p>Este é o uso clássico do `reduce`: somar o custo total dos itens no carrinho.</p>
+            <pre className="bg-slate-950 rounded-md p-4 text-sm ring-1 ring-slate-700">
+                <code className="font-mono text-emerald-300 whitespace-pre-wrap">{`const carrinho = [
+  { nome: 'Maçãs', preco: 1.50, quantidade: 2 },       // Custo: 3.00
+  { nome: 'Pão de Forma', preco: 2.00, quantidade: 1 }, // Custo: 2.00
+  { nome: 'Café', preco: 4.50, quantidade: 1 }         // Custo: 4.50
+];
+
+// reduce( (acumulador, itemAtual) => { ... }, valorInicialDoAcumulador )
+const total = carrinho.reduce((soma, produto) => {
+  const custoItem = produto.preco * produto.quantidade;
+  return soma + custoItem;
+}, 0); // Começamos a nossa "panela" (soma) com 0
+
+console.log(\`O total do carrinho é: \${total.toFixed(2)}€\`); // O total do carrinho é: 9.50€`}</code>
+            </pre>
+        </TopicCard>
+        <TopicCard title="Quiz Rápido" icon={<QuizIcon />}>
+            <p><strong>Pergunta:</strong> No exemplo acima, qual é o valor da variável `soma` na primeira vez que a função dentro do `reduce` é executada?</p>
+            <p className="text-sm text-slate-400"><strong>Resposta:</strong> `0`. O segundo argumento do `reduce` é o valor inicial do acumulador. Na primeira iteração, `soma` é `0` e `produto` é o objeto das 'Maçãs'. A função retorna `0 + 3.00`, e esse `3.00` será o valor de `soma` na segunda iteração.</p>
+        </TopicCard>
+    </div>
+);
+
+const Lesson4_5 = () => (
+    <div className="space-y-8">
+        <TopicCard title="Objetivo: Os Desempacotadores Mágicos" icon={<DestructuringIcon />}>
+            <p><strong>Meta:</strong> Aprender sintaxe moderna (ES6+) para extrair dados de arrays e objetos de forma mais limpa (Destructuring) e para copiar ou combinar dados (Spread/Rest).</p>
+        </TopicCard>
+        <TopicCard title="Analogia: Desfazer as Malas e Fotocopiar Documentos" icon={<DestructuringIcon />}>
+            <p><strong>Destructuring (Desestruturação):</strong> É como <strong>desfazer uma mala</strong>. Em vez de dizer "tira o primeiro item, que são as calças; tira o segundo, que é a camisola", tu simplesmente dizes "quero as `calcas` e a `camisola`" e tiras-as diretamente, pelo nome (para objetos) ou pela posição (para arrays).</p>
+            <p><strong>Spread Operator (`...`):</strong> É como usar uma <strong>fotocopiadora</strong>. Pega num documento (array ou objeto) e espalha (spread) todas as suas páginas numa nova pilha de papel. Útil para fazer cópias ou juntar documentos.</p>
+        </TopicCard>
+        <TopicCard title="Projeto Final: Funções do Carrinho de Compras" icon={<ExerciseIcon />}>
+            <p>Vamos juntar tudo e criar funções utilitárias para o nosso carrinho, usando estas novas sintaxes.</p>
+            <pre className="bg-slate-950 rounded-md p-4 text-sm ring-1 ring-slate-700">
+                <code className="font-mono text-emerald-300 whitespace-pre-wrap">{`const carrinhoInicial = [
+  { id: 1, nome: 'Maçãs', preco: 1.50 },
+  { id: 2, nome: 'Leite', preco: 0.80 },
+];
+
+// Função para adicionar um item de forma "imutável" (sem alterar o original)
+const adicionarItem = (carrinho, item) => {
+  // Usamos o spread operator para "espalhar" os itens antigos num novo array
+  return [...carrinho, item]; 
+};
+
+const novoProduto = { id: 3, nome: 'Café', preco: 4.50 };
+const carrinhoAtualizado = adicionarItem(carrinhoInicial, novoProduto);
+
+// Função que usa destructuring para mostrar um produto
+const mostrarProduto = (produto) => {
+  // Em vez de produto.nome, produto.preco...
+  const { nome, preco } = produto; 
+  console.log(\`- \${nome}: \${preco.toFixed(2)}€\`);
+};
+
+carrinhoAtualizado.forEach(mostrarProduto);`}</code>
+            </pre>
+        </TopicCard>
+        <TopicCard title="Resumo do Módulo" icon={<SummaryIcon />}>
+            <p><strong>Conseguiste!</strong> Agora já não trabalhas com dados soltos, mas sim com estruturas organizadas. Dominas:</p>
+            <ul>
+                <li><strong>Arrays:</strong> Para listas ordenadas de dados.</li>
+                <li><strong>Objetos:</strong> Para agrupar informações sobre uma única entidade.</li>
+                <li><strong><code>.map()</code>, <code>.filter()</code>, <code>.reduce()</code>:</strong> O trio de ouro para manipular arrays de forma moderna e declarativa.</li>
+                <li><strong>Destructuring e Spread:</strong> Sintaxe limpa para trabalhar com arrays e objetos de forma mais eficiente.</li>
+            </ul>
+        </TopicCard>
+    </div>
+);
+
+const Module4 = () => {
+    const [activeLesson, setActiveLesson] = useState(1);
+    const lessons = [
+        { id: 1, title: 'Aula 1: As Listas', component: <Lesson4_1 /> },
+        { id: 2, title: 'Aula 2: Os Catálogos', component: <Lesson4_2 /> },
+        { id: 3, title: 'Aula 3: A Fábrica', component: <Lesson4_3 /> },
+        { id: 4, title: 'Aula 4: O Contabilista', component: <Lesson4_4 /> },
+        { id: 5, title: 'Aula 5: Os Desempacotadores', component: <Lesson4_5 /> },
+    ];
+    
+    const lesson = lessons.find(l => l.id === activeLesson);
+
+    return (
+        <div className="animate-fade-in">
+            <div className="flex justify-center flex-wrap gap-2 mb-10 border-b border-slate-700 pb-4">
+                {lessons.map(lesson => (
+                     <button 
+                        key={lesson.id} 
+                        onClick={() => setActiveLesson(lesson.id)}
+                        aria-pressed={activeLesson === lesson.id}
+                        className={`px-4 py-2 font-semibold text-sm rounded-md transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:ring-cyan-400 ${
+                            activeLesson === lesson.id
+                                ? 'bg-cyan-500 text-slate-900 shadow-lg'
+                                : 'text-slate-300 bg-slate-800 hover:bg-slate-700'
+                        }`}
+                     >
+                        {lesson.title}
+                     </button>
+                ))}
+            </div>
+            {lesson?.component}
+        </div>
+    );
+};
+
+const Lesson5_1 = () => (
+    <div className="space-y-8">
+        <TopicCard title="Objetivo: As Fábricas e as Plantas" icon={<FactoryIcon />}>
+            <p><strong>Meta:</strong> Aprender os dois padrões clássicos para criar múltiplos objetos do mesmo "tipo": as *Factory Functions* e as *Constructor Functions*. Esta é a nossa introdução à ideia de criar objetos de forma programática.</p>
+        </TopicCard>
+        <TopicCard title="Analogia: A Fábrica de Brinquedos vs. a Planta de um Carro" icon={<FactoryIcon />}>
+            <p>Imagina que queres produzir muitos objetos iguais, como sprites para um jogo.</p>
+            <ul>
+                <li><strong>Factory Function (A Fábrica):</strong> É uma função que, quando chamada, <strong>constrói e devolve um objeto novo</strong>. É como uma máquina numa fábrica de brinquedos: carregas no botão e sai um boneco pronto. Não te preocupas com os detalhes internos, apenas queres o produto final.</li>
+                <li><strong>Constructor Function (A Planta):</strong> É uma <strong>planta de engenharia</strong> para construir um carro. Não é o carro em si, mas sim o plano. A palavra-chave <code>new</code> é a "equipa de construção" que lê a planta e monta um carro novo e único (uma <strong>instância</strong>). Por convenção, o nome das plantas (constructors) começa com letra maiúscula.</li>
+            </ul>
+        </TopicCard>
+        <TopicCard title="Prática: Criar o Nosso Primeiro Sprite" icon={<ExerciseIcon />}>
+            <p>Vamos criar um objeto `sprite` (um elemento gráfico num jogo) usando os dois métodos.</p>
+            <pre className="bg-slate-950 rounded-md p-4 text-sm ring-1 ring-slate-700">
+                <code className="font-mono text-emerald-300 whitespace-pre-wrap">{`// --- 1. Factory Function ---
+function criarSprite(x, y, imagem) {
+  return {
+    x: x,
+    y: y,
+    imagem: imagem,
+    desenhar: function() {
+      console.log(\`A desenhar \${this.imagem} em (\${this.x}, \${this.y})\`);
+    }
+  };
+}
+const fantasma = criarSprite(50, 50, 'fantasma.png');
+fantasma.desenhar(); // A desenhar fantasma.png em (50, 50)
+
+// --- 2. Constructor Function ---
+function Sprite(x, y, imagem) {
+  // 'this' refere-se ao objeto novo e vazio que 'new' criou
+  this.x = x;
+  this.y = y;
+  this.imagem = imagem;
+  this.desenhar = function() {
+    console.log(\`A desenhar \${this.imagem} em (\${this.x}, \${this.y})\`);
+  }
+}
+// 'new' é a magia que cria o objeto e o liga ao 'this'
+const jogador = new Sprite(0, 100, 'jogador.png');
+jogador.desenhar(); // A desenhar jogador.png em (0, 100)`}</code>
+            </pre>
+        </TopicCard>
+        <TopicCard title="Quiz Rápido" icon={<QuizIcon />}>
+            <p><strong>Pergunta:</strong> No exemplo da *Constructor Function*, o que aconteceria se te esquecesses de usar a palavra-chave <code>new</code> ao chamar <code>Sprite</code>?</p>
+            <p className="text-sm text-slate-400"><strong>Resposta:</strong> Seria um desastre! Sem o <code>new</code>, o <code>this</code> dentro da função apontaria para o objeto global (<code>window</code> no navegador). Acabarias por criar variáveis globais <code>window.x</code>, <code>window.y</code>, etc., o que é uma má prática terrível. É por isso que os nomes dos construtores começam com maiúscula, para nos lembrar de usar o <code>new</code>.</p>
+        </TopicCard>
+    </div>
+);
+
+const Lesson5_2 = () => (
+    <div className="space-y-8">
+        <TopicCard title="Objetivo: O ADN Partilhado" icon={<PrototypeIcon />}>
+            <p><strong>Meta:</strong> Entender o mecanismo de *Prototypes*. É a forma como o JavaScript implementa a herança e permite que objetos partilhem métodos, poupando imensa memória.</p>
+        </TopicCard>
+        <TopicCard title="Analogia: A Caixa de Ferramentas Comunitária" icon={<PrototypeIcon />}>
+            <p>Na aula anterior, cada sprite que criámos com o construtor tinha a sua própria cópia da função <code>desenhar</code>. Se criarmos 1000 sprites, teremos 1000 cópias dessa função na memória! Não é eficiente.</p>
+            <p>O <strong>Prototype</strong> é como uma <strong>caixa de ferramentas comunitária</strong> para todos os objetos criados a partir da mesma planta (Constructor). Em vez de cada objeto ter a sua própria ferramenta, todos sabem onde ir buscá-la quando precisam.</p>
+            <p>Quando chamas <code>jogador.desenhar()</code>, o JavaScript primeiro procura a ferramenta "desenhar" na "mochila" do próprio `jogador`. Se não encontrar, ele segue uma "corrente" (a *prototype chain*) e vai procurar na caixa de ferramentas comunitária do <code>Sprite.prototype</code>.</p>
+        </TopicCard>
+        <TopicCard title="Prática: Otimizar os Nossos Sprites" icon={<ExerciseIcon />}>
+            <p>Vamos refatorar o nosso construtor para mover o método <code>desenhar</code> para o `prototype`.</p>
+            <pre className="bg-slate-950 rounded-md p-4 text-sm ring-1 ring-slate-700">
+                <code className="font-mono text-emerald-300 whitespace-pre-wrap">{`function Sprite(x, y, imagem) {
+  this.x = x;
+  this.y = y;
+  this.imagem = imagem;
+}
+
+// Adicionamos a ferramenta à "caixa de ferramentas" partilhada
+Sprite.prototype.desenhar = function() {
+  console.log(\`A desenhar \${this.imagem} em (\${this.x}, \${this.y})\`);
+};
+
+const jogador = new Sprite(0, 100, 'jogador.png');
+const inimigo = new Sprite(200, 100, 'inimigo.png');
+
+jogador.desenhar(); // Funciona!
+inimigo.desenhar(); // Funciona!
+
+// O jogador não tem o método "desenhar" diretamente.
+console.log(jogador.hasOwnProperty('desenhar')); // false
+// Mas o seu protótipo tem!
+console.log(Sprite.prototype.hasOwnProperty('desenhar')); // true`}</code>
+            </pre>
+        </TopicCard>
+        <TopicCard title="Quiz Rápido" icon={<QuizIcon />}>
+            <p><strong>Pergunta:</strong> Se, depois de criares os objetos `jogador` e `inimigo`, adicionares um novo método ao protótipo, como <code>Sprite.prototype.mover = function() { this.x += 1; }</code>, esses objetos já existentes terão acesso ao novo método?</p>
+            <p className="text-sm text-slate-400"><strong>Resposta:</strong> Sim! Isto é o poder da *prototype chain*. Como os objetos não têm o método, eles vão procurá-lo na "caixa de ferramentas" partilhada no momento em que o método é chamado. Como a caixa foi atualizada, eles encontram a nova ferramenta.</p>
+        </TopicCard>
+    </div>
+);
+
+const Lesson5_3 = () => (
+    <div className="space-y-8">
+        <TopicCard title="Objetivo: A Planta Moderna" icon={<ClassIcon />}>
+            <p><strong>Meta:</strong> Aprender a sintaxe de <strong>Classes</strong> do ES6. É uma forma muito mais limpa, moderna e intuitiva de fazer exatamente o que vínhamos a fazer com Construtores e Prototypes.</p>
+        </TopicCard>
+        <TopicCard title="Analogia: O Açúcar Sintático" icon={<ClassIcon />}>
+            <p>Pensa nas Classes como uma <strong>capa bonita e organizada</strong> para o sistema de Construtores e Prototypes. Por baixo do capô, o motor é exatamente o mesmo, mas a "carroçaria" é muito mais fácil de ler e entender.</p>
+            <p>A sintaxe <code>class</code> junta a "planta" (o `constructor`) e as "ferramentas na caixa comunitária" (os métodos) num só sítio, em vez de estarem espalhados pelo código. A isto chama-se <strong>"açúcar sintático"</strong> (*syntactic sugar*), porque torna a "comida" (o código) mais agradável sem mudar os "ingredientes" (o funcionamento).</p>
+        </TopicCard>
+        <TopicCard title="Prática: Refatorar o Sprite para uma Classe" icon={<ExerciseIcon />}>
+            <p>Vamos converter o nosso código anterior para a sintaxe de classe.</p>
+            <pre className="bg-slate-950 rounded-md p-4 text-sm ring-1 ring-slate-700">
+                <code className="font-mono text-emerald-300 whitespace-pre-wrap">{`class Sprite {
+  // O 'constructor' é uma função especial que é chamada quando usamos 'new'
+  constructor(x, y, imagem) {
+    this.x = x;
+    this.y = y;
+    this.imagem = imagem;
+  }
+
+  // Métodos definidos aqui são automaticamente colocados no .prototype!
+  desenhar() {
+    console.log(\`A desenhar \${this.imagem} em (\${this.x}, \${this.y})\`);
+  }
+
+  mover(dx, dy) {
+    this.x += dx;
+    this.y += dy;
+    console.log(\`\${this.imagem} moveu-se para (\${this.x}, \${this.y})\`);
+  }
+}
+
+// A utilização é exatamente a mesma
+const jogador = new Sprite(0, 100, 'jogador.png');
+jogador.desenhar();
+jogador.mover(10, 5);`}</code>
+            </pre>
+        </TopicCard>
+        <TopicCard title="Quiz Rápido" icon={<QuizIcon />}>
+            <p><strong>Pergunta:</strong> Uma Classe em JavaScript é um conceito fundamentalmente novo e diferente dos Prototypes?</p>
+            <p className="text-sm text-slate-400"><strong>Resposta:</strong> Não. É apenas "açúcar sintático". A sintaxe <code>class</code> não introduz um novo modelo de herança em JavaScript. Ela simplesmente oferece uma maneira mais fácil de trabalhar com a herança baseada em protótipos que já existia.</p>
+        </TopicCard>
+    </div>
+);
+
+const Lesson5_4 = () => (
+    <div className="space-y-8">
+        <TopicCard title="Objetivo: A Especialização" icon={<InheritanceIcon />}>
+            <p><strong>Meta:</strong> Aprender a criar classes que herdam propriedades e métodos de outras classes, usando <code>extends</code> e <code>super</code>. Isto permite-nos criar hierarquias e reutilizar código de forma massiva.</p>
+        </TopicCard>
+        <TopicCard title="Analogia: A Planta da Mansão" icon={<InheritanceIcon />}>
+            <p>Imagina que já tens uma planta para uma "Casa" (a classe base, ou *superclass*). Agora queres construir uma "Mansão" (a classe derivada, ou *subclass*).</p>
+            <p>Não vais desenhar a planta toda de novo. Tu pegas na planta da "Casa" e <strong>estendes-a</strong> (<code>extends</code>), adicionando os extras: uma piscina, um cinema, etc. A Mansão <strong>é uma</strong> Casa, mas com mais coisas.</p>
+            <p>A palavra-chave <code>super()</code> é como dizer: "constrói primeiro a parte básica da casa, usando a planta original, e só depois é que eu adiciono os meus extras". É obrigatório chamar <code>super()</code> no construtor de uma subclasse antes de usar <code>this</code>.</p>
+        </TopicCard>
+        <TopicCard title="Prática: Criar uma Classe `Player`" icon={<ExerciseIcon />}>
+            <p>Um `Player` é um `Sprite`, mas com uma característica adicional: tem um nome.</p>
+            <pre className="bg-slate-950 rounded-md p-4 text-sm ring-1 ring-slate-700">
+                <code className="font-mono text-emerald-300 whitespace-pre-wrap">{`class Sprite {
+  constructor(x, y, imagem) {
+    this.x = x;
+    this.y = y;
+    this.imagem = imagem;
+  }
+  desenhar() {
+    console.log(\`A desenhar \${this.imagem} em (\${this.x}, \${this.y})\`);
+  }
+}
+
+// Player "estende" Sprite
+class Player extends Sprite {
+  constructor(x, y, imagem, nome) {
+    // Chama o construtor da classe "pai" (Sprite) primeiro
+    super(x, y, imagem);
+    
+    // Agora adiciona as propriedades específicas do Player
+    this.nome = nome;
+    this.pontos = 0;
+  }
+
+  // Player pode ter os seus próprios métodos
+  marcarPonto() {
+    this.pontos++;
+    console.log(\`\${this.nome} marcou um ponto! Total: \${this.pontos}\`);
+  }
+}
+
+const heroi = new Player(0, 100, 'heroi.png', 'Super Coder');
+heroi.desenhar();      // Método herdado de Sprite!
+heroi.marcarPonto(); // Método próprio de Player!`}</code>
+            </pre>
+        </TopicCard>
+        <TopicCard title="Quiz Rápido" icon={<QuizIcon />}>
+            <p><strong>Pergunta:</strong> Se a classe `Player` também tivesse um método `desenhar()`, qual seria executado quando chamasses `heroi.desenhar()`?</p>
+            <p className="text-sm text-slate-400"><strong>Resposta:</strong> O método da classe `Player`. Quando uma subclasse define um método com o mesmo nome de um método da superclasse, ela "sobrescreve-o" (*overrides*). A busca pela "ferramenta" encontra-a primeiro na "mochila" do `Player` e para por aí, não precisando de ir à "caixa de ferramentas" do `Sprite`.</p>
+        </TopicCard>
+    </div>
+);
+
+const Lesson5_5 = () => (
+    <div className="space-y-8">
+        <TopicCard title="Objetivo: Segredos e Botões Mágicos" icon={<EncapsulationIcon />}>
+            <p><strong>Meta:</strong> Aprender a proteger os dados internos de uma classe (Encapsulamento com <code>#</code>) e a controlar como esses dados são lidos e alterados (Getters e Setters).</p>
+        </TopicCard>
+        <TopicCard title="Analogia: A Canalização e o Termostato" icon={<EncapsulationIcon />}>
+            <p><strong>Encapsulamento (Campos Privados):</strong> As propriedades de uma classe são como a <strong>canalização</strong> de uma casa. Os habitantes não devem mexer nos canos diretamente. Se o fizerem, podem partir alguma coisa. Um campo privado (começado por <code>#</code>) esconde essa canalização. Só a própria classe (o "canalizador") pode mexer nela.</p>
+            <p><strong>Getters e Setters (Acesso Controlado):</strong> São como um <strong>termostato inteligente</strong>.</p>
+            <ul>
+                <li>O <strong>Getter</strong> (`get`) permite-te <strong>ler</strong> a temperatura atual. Pode até formatá-la (ex: "21 graus Celsius").</li>
+                <li>O <strong>Setter</strong> (`set`) permite-te <strong>definir</strong> uma nova temperatura, mas pode ter regras! (ex: "Não podes definir a temperatura para 50 graus, é muito alto").</li>
+            </ul>
+        </TopicCard>
+        <TopicCard title="Projeto Final: Framework de Sprites" icon={<ExerciseIcon />}>
+            <p>Vamos finalizar a nossa classe `Player`, protegendo a sua velocidade e usando um getter para obter a sua posição de forma formatada.</p>
+            <pre className="bg-slate-950 rounded-md p-4 text-sm ring-1 ring-slate-700">
+                <code className="font-mono text-emerald-300 whitespace-pre-wrap">{`class Player {
+  // #velocidade é agora um campo privado. Ninguém de fora pode mexer.
+  #velocidade = 5; 
+
+  constructor(nome, x, y) {
+    this.nome = nome;
+    this.x = x;
+    this.y = y;
+  }
+
+  // Um 'getter' parece uma propriedade, mas é uma função.
+  get posicao() {
+    return \`(\${this.x}, \${this.y})\`;
+  }
+
+  // Um 'setter' para controlar a velocidade máxima.
+  set novaVelocidade(valor) {
+    if (valor > 0 && valor < 10) {
+      this.#velocidade = valor;
+    } else {
+      console.error("Velocidade inválida!");
+    }
+  }
+
+  andarParaFrente() {
+    this.x += this.#velocidade;
+    console.log(\`\${this.nome} andou. Nova posição: \${this.posicao}\`);
+  }
+}
+
+const heroi = new Player('Super Coder', 0, 0);
+heroi.andarParaFrente(); // Anda 5 para a frente
+
+heroi.novaVelocidade = 8; // Usar o setter
+heroi.andarParaFrente(); // Agora anda 8 para a frente
+
+console.log(heroi.posicao); // Usar o getter: "(13, 0)"
+
+// heroi.#velocidade = 1000; // Isto daria um erro! O campo é privado.`}</code>
+            </pre>
+        </TopicCard>
+        <TopicCard title="Resumo do Módulo" icon={<SummaryIcon />}>
+            <p><strong>Uau! Chegaste ao fim de um dos módulos mais densos.</strong> A OOP é um pilar da programação moderna. Agora sabes:</p>
+            <ul>
+                <li>Criar objetos com <strong>Constructors</strong> e o poder dos <strong>Prototypes</strong>.</li>
+                <li>Usar a sintaxe moderna de <strong>Classes</strong> para organizar o teu código.</li>
+                <li>Reutilizar código de forma massiva com <strong>Herança</strong> (<code>extends</code>).</li>
+                <li>Proteger e controlar o acesso aos dados com <strong>Encapsulamento</strong>, <strong>Getters</strong> e <strong>Setters</strong>.</li>
+            </ul>
+        </TopicCard>
+    </div>
+);
+
+const Module5 = () => {
+    const [activeLesson, setActiveLesson] = useState(1);
+    const lessons = [
+        { id: 1, title: 'Aula 1: As Plantas', component: <Lesson5_1 /> },
+        { id: 2, title: 'Aula 2: O ADN', component: <Lesson5_2 /> },
+        { id: 3, title: 'Aula 3: A Sintaxe Moderna', component: <Lesson5_3 /> },
+        { id: 4, title: 'Aula 4: A Especialização', component: <Lesson5_4 /> },
+        { id: 5, title: 'Aula 5: Os Segredos', component: <Lesson5_5 /> },
+    ];
+    
+    const lesson = lessons.find(l => l.id === activeLesson);
+
+    return (
+        <div className="animate-fade-in">
+            <div className="flex justify-center flex-wrap gap-2 mb-10 border-b border-slate-700 pb-4">
+                {lessons.map(lesson => (
+                     <button 
+                        key={lesson.id} 
+                        onClick={() => setActiveLesson(lesson.id)}
+                        aria-pressed={activeLesson === lesson.id}
+                        className={`px-4 py-2 font-semibold text-sm rounded-md transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:ring-cyan-400 ${
+                            activeLesson === lesson.id
+                                ? 'bg-cyan-500 text-slate-900 shadow-lg'
+                                : 'text-slate-300 bg-slate-800 hover:bg-slate-700'
+                        }`}
+                     >
+                        {lesson.title}
+                     </button>
+                ))}
+            </div>
+            {lesson?.component}
         </div>
     );
 };
@@ -991,10 +1556,28 @@ const App: React.FC = () => {
       title: "Módulo 3: Funções & Scope",
       description: "Aprende a organizar e reutilizar o teu código. Funções são as 'receitas' que tornam as tuas aplicações poderosas e modulares. Projeto: Simulador de Caixa Multibanco.",
       component: <Module3 />
+    },
+    {
+      id: 4,
+      title: "Módulo 4: Estruturas de Dados",
+      description: "Aprende a organizar coleções de dados com Arrays e Objetos e a manipulá-los com os poderosos métodos de iteração. Projeto: Carrinho de Compras.",
+      component: <Module4 />
+    },
+    {
+      id: 5,
+      title: "Módulo 5: Programação Orientada a Objetos",
+      description: "Deixa de ser artesão, sê engenheiro. Aprende a criar 'plantas' para os teus dados com Classes, Herança e Encapsulamento. Projeto: Mini-framework de sprites para jogo 2D.",
+      component: <Module5 />
     }
   ];
 
   const currentModule = modules.find(m => m.id === activeModule);
+
+  // FIX: Add a guard clause to handle the case where find() returns undefined.
+  // This prevents potential runtime errors and satisfies TypeScript's null safety checks.
+  if (!currentModule) {
+    return null; // Or a loading/error component
+  }
 
   return (
     <div className="min-h-screen bg-slate-900 font-sans p-4 sm:p-6 lg:p-8">
@@ -1004,31 +1587,33 @@ const App: React.FC = () => {
             Curso de JavaScript
           </h1>
           <h2 className="text-2xl sm:text-3xl font-semibold text-slate-300">
-            {currentModule?.title}
+            {currentModule.title}
           </h2>
           <p className="mt-4 text-slate-400 max-w-2xl mx-auto">
-            {currentModule?.description}
+            {currentModule.description}
           </p>
         </header>
 
-        <div className="flex justify-center border-b border-slate-700 mb-12">
-          {modules.map(module => (
-            <button
-              key={module.id}
-              onClick={() => setActiveModule(module.id)}
-              aria-pressed={activeModule === module.id}
-              className={`px-4 sm:px-6 py-3 font-semibold text-sm rounded-t-md transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:ring-cyan-400 ${
-                activeModule === module.id
-                  ? 'border-b-2 border-cyan-400 text-cyan-400 bg-slate-800/30'
-                  : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/20'
-              }`}
-            >
-              {`Módulo ${module.id}`}
-            </button>
-          ))}
+        <div className="flex justify-center border-b border-slate-700 mb-12 overflow-x-auto">
+          <div className="flex">
+            {modules.map(module => (
+              <button
+                key={module.id}
+                onClick={() => setActiveModule(module.id)}
+                aria-pressed={activeModule === module.id}
+                className={`flex-shrink-0 px-4 sm:px-6 py-3 font-semibold text-sm rounded-t-md transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:ring-cyan-400 ${
+                  activeModule === module.id
+                    ? 'border-b-2 border-cyan-400 text-cyan-400 bg-slate-800/30'
+                    : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/20'
+                }`}
+              >
+                {`Módulo ${module.id}`}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {currentModule?.component}
+        {currentModule.component}
 
         <footer className="text-center mt-16 text-slate-500 text-sm">
           <p>Boa sorte com o curso! A prática consistente é a chave para o sucesso.</p>
