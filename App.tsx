@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import TopicCard from './components/TopicCard';
 import { 
@@ -7,7 +8,8 @@ import {
   DecisionIcon, LoopIcon, AdvancedLoopIcon, QuizIcon, SummaryIcon, SwitchIcon,
   FunctionIcon, TemplateLiteralIcon, ScopeIcon, ClosureIcon, ArrowFunctionIcon,
   ArrayIcon, ObjectIcon, IterationIcon, ReduceIcon, DestructuringIcon,
-  FactoryIcon, PrototypeIcon, ClassIcon, InheritanceIcon, EncapsulationIcon
+  FactoryIcon, PrototypeIcon, ClassIcon, InheritanceIcon, EncapsulationIcon,
+  CallbackIcon, PromiseIcon, FetchIcon, AsyncAwaitIcon, ParallelIcon
 } from './components/icons';
 
 const gitignoreContent = `# Ficheiros de dependências
@@ -355,26 +357,27 @@ const Module1 = () => {
     ];
 
     const lesson = lessons.find(l => l.id === activeLesson);
+    if (!lesson) return null;
 
     return (
         <div className="animate-fade-in">
             <div className="flex justify-center flex-wrap gap-2 mb-10 border-b border-slate-700 pb-4">
-                {lessons.map(lesson => (
+                {lessons.map(l => (
                      <button 
-                        key={lesson.id} 
-                        onClick={() => setActiveLesson(lesson.id)}
-                        aria-pressed={activeLesson === lesson.id}
+                        key={l.id} 
+                        onClick={() => setActiveLesson(l.id)}
+                        aria-pressed={activeLesson === l.id}
                         className={`px-4 py-2 font-semibold text-sm rounded-md transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:ring-cyan-400 ${
-                            activeLesson === lesson.id
+                            activeLesson === l.id
                                 ? 'bg-cyan-500 text-slate-900 shadow-lg'
                                 : 'text-slate-300 bg-slate-800 hover:bg-slate-700'
                         }`}
                      >
-                        {lesson.title}
+                        {l.title}
                      </button>
                 ))}
             </div>
-            {lesson?.component}
+            {lesson.component}
         </div>
     );
 };
@@ -668,26 +671,27 @@ const Module2 = () => {
     ];
 
     const lesson = lessons.find(l => l.id === activeLesson);
+    if (!lesson) return null;
 
     return (
         <div className="animate-fade-in">
             <div className="flex justify-center flex-wrap gap-2 mb-10 border-b border-slate-700 pb-4">
-                {lessons.map(lesson => (
+                {lessons.map(l => (
                      <button 
-                        key={lesson.id} 
-                        onClick={() => setActiveLesson(lesson.id)}
-                        aria-pressed={activeLesson === lesson.id}
+                        key={l.id} 
+                        onClick={() => setActiveLesson(l.id)}
+                        aria-pressed={activeLesson === l.id}
                         className={`px-4 py-2 font-semibold text-sm rounded-md transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:ring-cyan-400 ${
-                            activeLesson === lesson.id
+                            activeLesson === l.id
                                 ? 'bg-cyan-500 text-slate-900 shadow-lg'
                                 : 'text-slate-300 bg-slate-800 hover:bg-slate-700'
                         }`}
                      >
-                        {lesson.title}
+                        {l.title}
                      </button>
                 ))}
             </div>
-            {lesson?.component}
+            {lesson.component}
         </div>
     );
 };
@@ -960,26 +964,27 @@ const Module3 = () => {
     ];
 
     const lesson = lessons.find(l => l.id === activeLesson);
+    if (!lesson) return null;
 
     return (
         <div className="animate-fade-in">
             <div className="flex justify-center flex-wrap gap-2 mb-10 border-b border-slate-700 pb-4">
-                {lessons.map(lesson => (
+                {lessons.map(l => (
                      <button 
-                        key={lesson.id} 
-                        onClick={() => setActiveLesson(lesson.id)}
-                        aria-pressed={activeLesson === lesson.id}
+                        key={l.id} 
+                        onClick={() => setActiveLesson(l.id)}
+                        aria-pressed={activeLesson === l.id}
                         className={`px-4 py-2 font-semibold text-sm rounded-md transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:ring-cyan-400 ${
-                            activeLesson === lesson.id
+                            activeLesson === l.id
                                 ? 'bg-cyan-500 text-slate-900 shadow-lg'
                                 : 'text-slate-300 bg-slate-800 hover:bg-slate-700'
                         }`}
                      >
-                        {lesson.title}
+                        {l.title}
                      </button>
                 ))}
             </div>
-            {lesson?.component}
+            {lesson.component}
         </div>
     );
 };
@@ -1207,26 +1212,27 @@ const Module4 = () => {
     ];
     
     const lesson = lessons.find(l => l.id === activeLesson);
+    if (!lesson) return null;
 
     return (
         <div className="animate-fade-in">
             <div className="flex justify-center flex-wrap gap-2 mb-10 border-b border-slate-700 pb-4">
-                {lessons.map(lesson => (
+                {lessons.map(l => (
                      <button 
-                        key={lesson.id} 
-                        onClick={() => setActiveLesson(lesson.id)}
-                        aria-pressed={activeLesson === lesson.id}
+                        key={l.id} 
+                        onClick={() => setActiveLesson(l.id)}
+                        aria-pressed={activeLesson === l.id}
                         className={`px-4 py-2 font-semibold text-sm rounded-md transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:ring-cyan-400 ${
-                            activeLesson === lesson.id
+                            activeLesson === l.id
                                 ? 'bg-cyan-500 text-slate-900 shadow-lg'
                                 : 'text-slate-300 bg-slate-800 hover:bg-slate-700'
                         }`}
                      >
-                        {lesson.title}
+                        {l.title}
                      </button>
                 ))}
             </div>
-            {lesson?.component}
+            {lesson.component}
         </div>
     );
 };
@@ -1504,26 +1510,320 @@ const Module5 = () => {
     ];
     
     const lesson = lessons.find(l => l.id === activeLesson);
+    if (!lesson) return null;
 
     return (
         <div className="animate-fade-in">
             <div className="flex justify-center flex-wrap gap-2 mb-10 border-b border-slate-700 pb-4">
-                {lessons.map(lesson => (
+                {lessons.map(l => (
                      <button 
-                        key={lesson.id} 
-                        onClick={() => setActiveLesson(lesson.id)}
-                        aria-pressed={activeLesson === lesson.id}
+                        key={l.id} 
+                        onClick={() => setActiveLesson(l.id)}
+                        aria-pressed={activeLesson === l.id}
                         className={`px-4 py-2 font-semibold text-sm rounded-md transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:ring-cyan-400 ${
-                            activeLesson === lesson.id
+                            activeLesson === l.id
                                 ? 'bg-cyan-500 text-slate-900 shadow-lg'
                                 : 'text-slate-300 bg-slate-800 hover:bg-slate-700'
                         }`}
                      >
-                        {lesson.title}
+                        {l.title}
                      </button>
                 ))}
             </div>
+            {/* FIX: Add optional chaining to safely access component property, preventing a crash if 'lesson' is undefined. */}
             {lesson?.component}
+        </div>
+    );
+};
+
+const Lesson7_1 = () => (
+    <div className="space-y-8">
+        <TopicCard title="Objetivo: O Pedido para Levar" icon={<CallbackIcon />}>
+            <p><strong>Meta:</strong> Entender o padrão assíncrono mais antigo do JavaScript, os *callbacks*, e visualizar o problema que eles podem criar, o "Callback Hell".</p>
+        </TopicCard>
+        <TopicCard title="Analogia: Pedir uma Pizza" icon={<CallbackIcon />}>
+            <p>Imagina que vais a uma pizzaria. Em vez de ficares à espera no balcão (o que bloquearia o teu dia), tu fazes o pedido e deixas o teu número de telemóvel. O "número de telemóvel" é a tua <strong>função de callback</strong>.</p>
+            <p>Tu vais à tua vida (o resto do teu código continua a executar), e quando a pizza estiver pronta (a operação demorada termina), o empregado "chama-te de volta" (executa a tua função de callback) com a pizza na mão (os dados).</p>
+            <p>O problema, o <strong>"Callback Hell"</strong>, acontece quando precisas da pizza para pedir uma sobremesa, e da sobremesa para pedir um café... Acabas com uma cadeia de telefonemas aninhados, um dentro do outro, criando uma estrutura de código confusa e difícil de ler, a "Pirâmide da Desgraça".</p>
+        </TopicCard>
+        {/* FIX: Corrected invalid JSX syntax by replacing nested double quotes with single quotes for the title prop. */}
+        <TopicCard title='Prática: Simular o "Callback Hell"' icon={<ExerciseIcon />}>
+            <p>Vamos usar `setTimeout` para simular operações demoradas e ver como o código se aninha.</p>
+            <pre className="bg-slate-950 rounded-md p-4 text-sm ring-1 ring-slate-700">
+                <code className="font-mono text-emerald-300 whitespace-pre-wrap">{`console.log("A fazer o pedido da pizza...");
+
+// Simula a espera pela pizza (2 segundos)
+setTimeout(() => {
+  console.log("A pizza chegou! Agora vou pedir a sobremesa.");
+  
+  // Simula a espera pela sobremesa (1 segundo)
+  setTimeout(() => {
+    console.log("A sobremesa chegou! Agora vou pedir o café.");
+
+    // Simula a espera pelo café (0.5 segundos)
+    setTimeout(() => {
+      console.log("O café chegou! Fim da refeição.");
+    }, 500);
+    
+  }, 1000);
+
+}, 2000);
+
+console.log("Enquanto espero, vou pondo a mesa."); // Isto executa imediatamente!`}</code>
+            </pre>
+        </TopicCard>
+        <TopicCard title="Quiz Rápido" icon={<QuizIcon />}>
+            <p><strong>Pergunta:</strong> No código acima, qual é a ordem exata em que as mensagens aparecem na consola?</p>
+            <p className="text-sm text-slate-400"><strong>Resposta:</strong> 1. "A fazer o pedido da pizza...", 2. "Enquanto espero, vou pondo a mesa.", 3. "A pizza chegou!...", 4. "A sobremesa chegou!...", 5. "O café chegou!...". Isto demonstra a natureza não-bloqueante do JavaScript.</p>
+        </TopicCard>
+    </div>
+);
+
+const Lesson7_2 = () => (
+    <div className="space-y-8">
+        <TopicCard title="Objetivo: A Encomenda Online" icon={<PromiseIcon />}>
+            <p><strong>Meta:</strong> Aprender a usar *Promises*, a solução moderna para o "Callback Hell". Uma *Promise* é um objeto que representa a eventual conclusão (ou falha) de uma operação assíncrona.</p>
+        </TopicCard>
+        <TopicCard title="Analogia: O Talão da Encomenda" icon={<PromiseIcon />}>
+            <p>Fazer uma operação assíncrona com uma *Promise* é como fazer uma <strong>encomenda online</strong>. Assim que pagas, recebes imediatamente um "talão" (a *Promise*). Esse talão tem um estado:</p>
+            <ul>
+                <li><strong><code>pending</code> (Pendente):</strong> A encomenda está a ser processada.</li>
+                <li><strong><code>fulfilled</code> (Realizada):</strong> A encomenda chegou a tua casa com sucesso.</li>
+                <li><strong><code>rejected</code> (Rejeitada):</strong> Ocorreu um problema e a encomenda foi cancelada.</li>
+            </ul>
+            <p>Em vez de aninhar *callbacks*, tu acorrentas ações ao talão:</p>
+            <ul>
+                <li><strong><code>.then(quandoChegar => ...)</code>:</strong> Define o que fazer quando a encomenda for <strong>realizada</strong>.</li>
+                <li><strong><code>.catch(seFalhar => ...)</code>:</strong> Define o que fazer se a encomenda for <strong>rejeitada</strong>.</li>
+                <li><strong><code>.finally(() => ...)</code>:</strong> Define uma ação que acontece <strong>sempre</strong> no final, quer a encomenda chegue ou não (ex: arquivar o email de confirmação).</li>
+            </ul>
+        </TopicCard>
+        <TopicCard title="Prática: Refatorar a Pizzaria com Promises" icon={<ExerciseIcon />}>
+            <p>Vamos transformar a nossa refeição caótica num processo linear e legível.</p>
+            <pre className="bg-slate-950 rounded-md p-4 text-sm ring-1 ring-slate-700">
+                <code className="font-mono text-emerald-300 whitespace-pre-wrap">{`function pedir(item, tempo) {
+  console.log(\`A pedir \${item}...\`);
+  // A Promise é o nosso "talão"
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      // Para este exemplo, vamos assumir que nunca falha
+      console.log(\`\${item} chegou!\`);
+      resolve(); // A promessa foi cumprida!
+    }, tempo);
+  });
+}
+
+pedir('pizza', 2000)
+  .then(() => pedir('sobremesa', 1000))
+  .then(() => pedir('café', 500))
+  .then(() => console.log("Fim da refeição."))
+  .catch(erro => console.error("Algo correu mal:", erro));`}</code>
+            </pre>
+        </TopicCard>
+        <TopicCard title="Quiz Rápido" icon={<QuizIcon />}>
+            <p><strong>Pergunta:</strong> No exemplo, o que aconteceria se dentro do `setTimeout` de `pedir('pizza', ...)` chamasses `reject("Não há queijo!")` em vez de `resolve()`?</p>
+            <p className="text-sm text-slate-400"><strong>Resposta:</strong> A cadeia de `.then()` seria imediatamente interrompida e o código saltaria diretamente para o bloco `.catch()`, imprimindo na consola "Algo correu mal: Não há queijo!".</p>
+        </TopicCard>
+    </div>
+);
+
+const Lesson7_3 = () => (
+    <div className="space-y-8">
+        <TopicCard title="Objetivo: Falar com o Mundo" icon={<FetchIcon />}>
+            <p><strong>Meta:</strong> Aprender a usar a `fetch API` para fazer pedidos a servidores externos e obter dados reais. Esta é a principal forma de uma aplicação web se tornar dinâmica e obter informação da internet.</p>
+        </TopicCard>
+        <TopicCard title="Analogia: Pedir um Livro na Biblioteca" icon={<FetchIcon />}>
+            <p>Usar `fetch` é como pedir um livro numa biblioteca gigante (um servidor na internet).</p>
+            <ol>
+                <li><strong>O Pedido:</strong> Tu vais ao balcão e dizes: "Quero o livro que está na prateleira `https://...`" (<code>fetch(url)</code>).</li>
+                <li><strong>O Recibo:</strong> O bibliotecário não te dá logo o livro. Ele dá-te um <strong>recibo</strong> (o objeto `Response`). Este recibo confirma que o teu pedido foi recebido e diz se o livro foi encontrado (status 200 OK) ou não (status 404 Not Found).</li>
+                <li><strong>A Descodificação:</strong> O livro está escrito numa língua que não entendes (JSON). Tens de pedir ao bibliotecário para o "traduzir" para ti. Esta tradução (<code>response.json()</code>) também demora um pouco e, por isso, também devolve uma *Promise*.</li>
+                <li><strong>A Leitura:</strong> Só quando a tradução está pronta é que recebes finalmente o livro (os dados) e podes começar a lê-lo.</li>
+            </ol>
+        </TopicCard>
+        <TopicCard title="Prática: Início da Weather App" icon={<ExerciseIcon />}>
+            <p>Vamos usar uma API gratuita de meteorologia para ir buscar o tempo em Lisboa. (Nota: esta API pode não funcionar para sempre, é apenas para demonstração).</p>
+            <pre className="bg-slate-950 rounded-md p-4 text-sm ring-1 ring-slate-700">
+                <code className="font-mono text-emerald-300 whitespace-pre-wrap">{`const url = 'https://goweather.herokuapp.com/weather/Lisbon';
+
+console.log("A pedir dados do tempo...");
+
+fetch(url)
+  .then(response => {
+    // Primeiro .then() recebe o "recibo"
+    console.log("Recibo recebido!", response);
+    // Verificamos se o pedido correu bem
+    if (!response.ok) {
+      throw new Error('Não foi possível obter os dados.');
+    }
+    // Pedimos a "tradução" para JSON
+    return response.json(); 
+  })
+  .then(data => {
+    // Segundo .then() recebe os dados "traduzidos"
+    console.log("Dados recebidos:", data);
+    console.log(\`Temperatura em Lisboa: \${data.temperature}\`);
+  })
+  .catch(error => {
+    console.error("Ocorreu um erro:", error);
+  });`}</code>
+            </pre>
+        </TopicCard>
+        <TopicCard title="Quiz Rápido" icon={<QuizIcon />}>
+            <p><strong>Pergunta:</strong> Porque é que precisamos de dois `.then()` na nossa chamada `fetch`?</p>
+            <p className="text-sm text-slate-400"><strong>Resposta:</strong> Porque a operação `fetch` tem duas fases assíncronas. A primeira *Promise* resolve com o objeto `Response` (o "recibo") assim que os cabeçalhos da resposta são recebidos. A segunda *Promise*, retornada por `response.json()`, só resolve quando o corpo inteiro da resposta foi descarregado e convertido de JSON para um objeto JavaScript.</p>
+        </TopicCard>
+    </div>
+);
+
+const Lesson7_4 = () => (
+    <div className="space-y-8">
+        <TopicCard title="Objetivo: A Conversa Fluida" icon={<AsyncAwaitIcon />}>
+            <p><strong>Meta:</strong> Aprender a usar a sintaxe `async/await`, que é "açúcar sintático" por cima das *Promises*. Permite-nos escrever código assíncrono que se parece e se lê como código síncrono, tornando-o muito mais intuitivo.</p>
+        </TopicCard>
+        <TopicCard title="Analogia: Conversar vs. Enviar Cartas" icon={<AsyncAwaitIcon />}>
+            <p>Usar `.then()` é como <strong>trocar cartas com alguém</strong>. Tu envias uma carta (`fetch`), e dizes "QUANDO (<code>.then()</code>) receberes a resposta, faz isto...". É uma cadeia de instruções.</p>
+            <p>Usar `async/await` é como ter uma <strong>conversa normal ao telemóvel</strong>:</p>
+            <ul>
+                <li>Tu marcas a conversa como especial (<code>async function</code>).</li>
+                <li>Quando precisas de uma resposta, tu simplesmente pausas e <strong>esperas</strong> (<code>await</code>) que a outra pessoa acabe de falar.</li>
+                <li>Assim que ela responde, a conversa continua naturalmente na linha seguinte.</li>
+            </ul>
+            <p>O `try...catch` é o teu "plano B": "<strong>Tenta</strong> (<code>try</code>) ter esta conversa. Se a chamada cair (um erro), <strong>apanha</strong> (<code>catch</code>) o problema e lida com ele."</p>
+        </TopicCard>
+        <TopicCard title="Prática: Refatorar a Weather App com Async/Await" icon={<ExerciseIcon />}>
+            <p>Vamos converter o nosso código `fetch` para a nova sintaxe e adicionar um spinner de loading.</p>
+            <pre className="bg-slate-950 rounded-md p-4 text-sm ring-1 ring-slate-700">
+                <code className="font-mono text-emerald-300 whitespace-pre-wrap">{`// Esta função é marcada como 'async'
+async function buscarTempo(cidade) {
+  // O 'spinner.show()' seria uma função para mostrar um ícone de loading na página
+  console.log(\`A buscar tempo para \${cidade}...\`);
+  
+  const url = \`https://goweather.herokuapp.com/weather/\${cidade}\`;
+
+  try {
+    // "Pausa" aqui até o fetch terminar e devolve a resposta
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error("Cidade não encontrada!");
+    }
+
+    // "Pausa" aqui até a tradução .json() terminar
+    const data = await response.json();
+
+    console.log(\`Temperatura: \${data.temperature}\`);
+    // 'displayData(data)' seria uma função para mostrar os dados na página
+
+  } catch (error) {
+    console.error("Erro:", error.message);
+    // 'displayError(error)' seria uma função para mostrar um erro na página
+
+  } finally {
+    // 'spinner.hide()' esconderia o ícone de loading
+    console.log("Pedido terminado.");
+  }
+}
+
+buscarTempo("Porto");`}</code>
+            </pre>
+        </TopicCard>
+        <TopicCard title="Quiz Rápido" icon={<QuizIcon />}>
+            <p><strong>Pergunta:</strong> Podes usar a palavra-chave `await` fora de uma função marcada com `async`?</p>
+            <p className="text-sm text-slate-400"><strong>Resposta:</strong> Não (com uma pequena exceção para o nível mais alto de módulos ES, mas a regra geral é não). A palavra-chave `await` só é válida dentro de funções `async` porque ela precisa de "pausar" a execução dessa função específica, e o JavaScript precisa de saber qual função pausar.</p>
+        </TopicCard>
+    </div>
+);
+
+const Lesson7_5 = () => (
+    <div className="space-y-8">
+        <TopicCard title="Objetivo: Pedidos em Paralelo" icon={<ParallelIcon />}>
+            <p><strong>Meta:</strong> Aprender a lidar com múltiplas *Promises* ao mesmo tempo usando ferramentas como `Promise.all` para otimizar o tempo de carregamento.</p>
+        </TopicCard>
+        <TopicCard title="Analogia: Pedidos no Restaurante" icon={<ParallelIcon />}>
+            <p>Imagina que estás num restaurante com amigos e queres pedir dados de várias cidades ao mesmo tempo.</p>
+            <ul>
+                <li><strong><code>Promise.all()</code> (O Jantar de Grupo):</strong> Todos pedem os seus pratos ao mesmo tempo. A regra é: só começamos a comer quando <strong>TODOS</strong> os pratos estiverem na mesa. Se o prato de uma pessoa falhar (a cozinha não tem o ingrediente), o jantar inteiro é cancelado (a *Promise* é rejeitada). É ótimo para quando precisas de vários dados que dependem uns dos outros.</li>
+                <li><strong><code>Promise.race()</code> (A Competição de Comida):</strong> É uma competição para ver qual prato chega primeiro. Assim que o primeiro prato (a primeira *Promise* a resolver) chega à mesa, a competição acaba e ignoramos os outros. Útil para, por exemplo, fazer um pedido a dois servidores e usar a resposta do mais rápido.</li>
+            </ul>
+        </TopicCard>
+        <TopicCard title="Projeto Final: Weather App com Múltiplas Cidades" icon={<ExerciseIcon />}>
+            <p>Vamos melhorar a nossa app para ir buscar o tempo de Lisboa, Porto e Faro, tudo ao mesmo tempo.</p>
+            <pre className="bg-slate-950 rounded-md p-4 text-sm ring-1 ring-slate-700">
+                <code className="font-mono text-emerald-300 whitespace-pre-wrap">{`async function buscarTempoVariasCidades() {
+  const cidades = ['Lisbon', 'Porto', 'Faro'];
+  
+  // 1. Criar um array de Promises (os "pedidos" ao restaurante)
+  const pedidosPromises = cidades.map(cidade =>
+    fetch(\`https://goweather.herokuapp.com/weather/\${cidade}\`)
+      .then(res => res.json())
+  );
+  
+  console.log("A fazer todos os pedidos ao mesmo tempo...");
+
+  try {
+    // 2. Esperar que TODOS os pedidos cheguem
+    const resultados = await Promise.all(pedidosPromises);
+
+    // 3. Mostrar os resultados
+    resultados.forEach((tempo, index) => {
+      console.log(\`Tempo em \${cidades[index]}: \${tempo.temperature}\`);
+    });
+
+  } catch (error) {
+    console.error("Um dos pedidos falhou!", error);
+  }
+}
+
+buscarTempoVariasCidades();`}</code>
+            </pre>
+        </TopicCard>
+        <TopicCard title="Resumo do Módulo" icon={<SummaryIcon />}>
+            <p><strong>Missão cumprida!</strong> Desvendaste o mistério do código assíncrono. Agora sabes:</p>
+            <ul>
+                <li>O que são <strong>Callbacks</strong> e como evitar o "Callback Hell".</li>
+                <li>A estrutura de <strong>Promises</strong> (<code>.then</code>, <code>.catch</code>) para um código mais limpo.</li>
+                <li>Usar <strong><code>fetch</code></strong> para comunicar com APIs e obter dados do mundo real.</li>
+                <li>Escrever código assíncrono legível e moderno com <strong><code>async/await</code></strong>.</li>
+                <li>Otimizar múltiplos pedidos com <strong><code>Promise.all</code></strong>.</li>
+            </ul>
+        </TopicCard>
+    </div>
+);
+
+
+const Module7 = () => {
+    const [activeLesson, setActiveLesson] = useState(1);
+    const lessons = [
+        { id: 1, title: 'Aula 1: O Pedido', component: <Lesson7_1 /> },
+        { id: 2, title: 'Aula 2: A Encomenda', component: <Lesson7_2 /> },
+        { id: 3, title: 'Aula 3: Falar com o Mundo', component: <Lesson7_3 /> },
+        { id: 4, title: 'Aula 4: A Conversa', component: <Lesson7_4 /> },
+        { id: 5, title: 'Aula 5: O Paralelo', component: <Lesson7_5 /> },
+    ];
+    
+    const lesson = lessons.find(l => l.id === activeLesson);
+    if (!lesson) return null;
+
+    return (
+        <div className="animate-fade-in">
+            <div className="flex justify-center flex-wrap gap-2 mb-10 border-b border-slate-700 pb-4">
+                {lessons.map(l => (
+                     <button 
+                        key={l.id} 
+                        onClick={() => setActiveLesson(l.id)}
+                        aria-pressed={activeLesson === l.id}
+                        className={`px-4 py-2 font-semibold text-sm rounded-md transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:ring-cyan-400 ${
+                            activeLesson === l.id
+                                ? 'bg-cyan-500 text-slate-900 shadow-lg'
+                                : 'text-slate-300 bg-slate-800 hover:bg-slate-700'
+                        }`}
+                     >
+                        {l.title}
+                     </button>
+                ))}
+            </div>
+            {lesson.component}
         </div>
     );
 };
@@ -1568,16 +1868,17 @@ const App: React.FC = () => {
       title: "Módulo 5: Programação Orientada a Objetos",
       description: "Deixa de ser artesão, sê engenheiro. Aprende a criar 'plantas' para os teus dados com Classes, Herança e Encapsulamento. Projeto: Mini-framework de sprites para jogo 2D.",
       component: <Module5 />
+    },
+    {
+        id: 7,
+        title: "Módulo 7: Assíncrono",
+        description: "Aprende a gerir tarefas que demoram tempo, como pedidos a servidores, sem bloquear a tua aplicação, usando Promises e Async/Await. Projeto: Weather App.",
+        component: <Module7 />
     }
   ];
 
   const currentModule = modules.find(m => m.id === activeModule);
-
-  // FIX: Add a guard clause to handle the case where find() returns undefined.
-  // This prevents potential runtime errors and satisfies TypeScript's null safety checks.
-  if (!currentModule) {
-    return null; // Or a loading/error component
-  }
+  if (!currentModule) return null;
 
   return (
     <div className="min-h-screen bg-slate-900 font-sans p-4 sm:p-6 lg:p-8">

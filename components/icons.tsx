@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 const iconProps = {
@@ -228,5 +229,42 @@ export const EncapsulationIcon: React.FC = () => (
     <svg {...iconProps}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M21 12c0 1.268-.63 2.4-1.683 3.055-.697.44-1.468.79-2.317 1.055-1.13.35-2.332.54-3.5.54-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9Z" />
+    </svg>
+);
+
+export const CallbackIcon: React.FC = () => (
+  <svg {...iconProps}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 8.25h9m-9 3H12m-2.25 3h4.5m-4.5 0H6.375c-.621 0-1.125-.504-1.125-1.125v-6.75c0-.621.504-1.125 1.125-1.125h9.25c.621 0 1.125.504 1.125 1.125v6.75c0 .621-.504 1.125-1.125 1.125H9.75" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 15.75v3" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 18.75h-4.5" />
+  </svg>
+);
+
+export const PromiseIcon: React.FC = () => (
+  <svg {...iconProps}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 9v.906a2.25 2.25 0 0 1-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 0 0 1.183 1.981l6.478 3.488m8.863-11.412 6.478 3.488m0 0-6.478 3.488m6.478-3.488L15.277 3.087a2.25 2.25 0 0 0-2.555 0L2.25 9" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 15.53v5.47a.75.75 0 0 0 1.28.53l4.22-4.22" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="m6.75 14.25-4.5 4.5" />
+  </svg>
+);
+
+export const FetchIcon: React.FC = () => (
+  <svg {...iconProps}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0-3.182-5.511m-13.5 0-3.182 5.511" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+  </svg>
+);
+
+export const AsyncAwaitIcon: React.FC = () => (
+  <svg {...iconProps}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.47 2.118 2.25 2.25 0 0 0-2.47-2.118c-.113.03-.227.067-.337.111a2.25 2.25 0 0 0-2.417 2.383c.21 1.282.98 2.323 2.185 2.801a2.25 2.25 0 0 0 2.265-.12c.16-.095.292-.224.4-.377a2.25 2.25 0 0 0 4.095.39" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364-.707-.707M6.343 6.343l-.707-.707m12.728 0-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" />
+  </svg>
+);
+
+export const ParallelIcon: React.FC = () => (
+    <svg {...iconProps}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h18" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 3 3 7.5m0 0L7.5 12M3 7.5h18" />
     </svg>
 );
